@@ -1,0 +1,43 @@
+Table users {
+  id integer [primary key]
+  username varchar(20)
+  email varchar(255)
+}
+
+Table details {
+  id integer [primary key]
+  user_id integer
+  first_name varchar(50)
+  last_name varchar(50)
+  favorite_ice_cream varchar(50)
+}
+
+Table interests {
+  id integer [primary key]
+  name varchar(50)
+}
+
+Table followers {
+  id integer [primary key]
+  user_id integer
+  follower_user_id integer
+}
+
+Table following {
+  id integer [primary key]
+  follower_id integer
+  following_id integer
+}
+
+Table posts {
+  id integer [primary key]
+  user_id integer
+  body text
+}
+
+Ref: followers.user_id > users.id
+Ref: following.following_id > users.id
+Ref: posts.user_id > users.id
+Ref: users.id - details.user_id
+Ref: users.id <> interests.id
+
