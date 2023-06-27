@@ -19,12 +19,14 @@ CREATE TABLE "interests" (
 
 CREATE TABLE "followers" (
   "id" integer PRIMARY KEY,
-  "following_user_id" integer
+  "user_id" integer,
+  "follower_user_id" integer
 );
 
 CREATE TABLE "following" (
   "id" integer PRIMARY KEY,
-  "followed_by_user_id" integer
+  "follower_id" integer,
+  "following_id" integer
 );
 
 CREATE TABLE "posts" (
@@ -33,9 +35,9 @@ CREATE TABLE "posts" (
   "body" text
 );
 
-ALTER TABLE "followers" ADD FOREIGN KEY ("following_user_id") REFERENCES "users" ("id");
+ALTER TABLE "followers" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
-ALTER TABLE "following" ADD FOREIGN KEY ("followed_by_user_id") REFERENCES "users" ("id");
+ALTER TABLE "following" ADD FOREIGN KEY ("following_id") REFERENCES "users" ("id");
 
 ALTER TABLE "posts" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
